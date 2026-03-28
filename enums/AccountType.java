@@ -1,5 +1,7 @@
 package BankProject.enums;
 
-public class AccountType {
-    
+public enum AccountType {
+    SAVINGS,
+    CHECKING,
+    CREDIT
 }

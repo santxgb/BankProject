@@ -1,4 +1,4 @@
-package BankProject.Crud;
+package BankProject.Logic;
 
 public class CrudAccount{
     
