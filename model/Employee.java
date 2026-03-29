@@ -14,7 +14,7 @@ public class Employee extends BaseClass {
         this.salary = salary;
         this.hireDate = hireDate;
         this.speciality = speciality;
-        this.autoId = ++autoId;
+        this.id = ++autoId;
     }
     public String getName() {
         return name;
