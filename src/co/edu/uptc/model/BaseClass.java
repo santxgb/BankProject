@@ -1,4 +1,4 @@
-package BankProject.model;
+package co.edu.uptc.model;
 
 public class BaseClass {
     protected int id;

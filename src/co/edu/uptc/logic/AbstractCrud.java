@@ -1,6 +1,6 @@
-
+package co.edu.uptc.logic;
 import javax.swing.JOptionPane;
-import co.edu.uptc.cruds.model.BaseClass;
+import co.edu.uptc.model.BaseClass;
 
 public abstract class AbstractCrud<T extends BaseClass> {
     private String nameEntity;

@@ -1,4 +1,4 @@
-package BankProject.model;
+package co.edu.uptc.model;
 import java.util.Date;
 
 public class Employee extends BaseClass {

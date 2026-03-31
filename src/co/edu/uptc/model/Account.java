@@ -1,8 +1,8 @@
-package BankProject.model;
+package co.edu.uptc.model;
 import java.util.Date;
 
-import BankProject.enums.AccountStatus;
-import BankProject.enums.AccountType;
+import co.edu.uptc.enums.AccountStatus;
+import co.edu.uptc.enums.AccountType;
 
 public class Account extends BaseClass {
     private String accountNumber;
