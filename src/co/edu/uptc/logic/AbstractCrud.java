@@ -1,6 +1,7 @@
+package co.edu.uptc.logic;
 
 import javax.swing.JOptionPane;
-import co.edu.uptc.cruds.model.BaseClass;
+import co.edu.uptc.model.BaseClass;
 
 public abstract class AbstractCrud<T extends BaseClass> {
     private String nameEntity;
@@ -23,7 +24,7 @@ public abstract class AbstractCrud<T extends BaseClass> {
             switch(operacion) {
                 case 1:
                     T recordCreate = this.createInstance();
-                    if(this.newRecord(recordCreate)) {
+                    if(recordCreate != null && this.newRecord(recordCreate)) {
                         JOptionPane.showMessageDialog(null, "Se agregó el registro",
                             "Creación del registro", JOptionPane.INFORMATION_MESSAGE);
                     } else {
@@ -33,14 +34,13 @@ public abstract class AbstractCrud<T extends BaseClass> {
                     break;
                 case 2:
                     int idFind = Integer.parseInt(JOptionPane.showInputDialog(
-                        null,
-                        "Digite el identificador del registro: ",
+                        null, "Digite el identificador del registro: ",
                         String.format("Búsqueda de %s", this.nameEntity),
                         JOptionPane.INFORMATION_MESSAGE));
                     T record = this.findRecordById(idFind);
                     if(record != null) {
                         JOptionPane.showMessageDialog(null,
-                            "El producto encontrado fue: " + record,
+                            "El registro encontrado fue: \n" + record,
                             String.format("Búsqueda de %s", this.nameEntity),
                             JOptionPane.INFORMATION_MESSAGE);
                     } else {
@@ -51,46 +51,41 @@ public abstract class AbstractCrud<T extends BaseClass> {
                     break;
                 case 3:
                     int idUpdate = Integer.parseInt(JOptionPane.showInputDialog(
-                        null,
-                        "Digite el identificador del registro: ",
+                        null, "Digite el identificador del registro a actualizar: ",
                         String.format("Actualización de %s", this.nameEntity),
                         JOptionPane.INFORMATION_MESSAGE));
                     T recordUpdate = this.findRecordById(idUpdate);
                     if(recordUpdate != null) {
                         T newRecord = createInstance();
-                        newRecord.setId(idUpdate);
-                        if(this.updateRecord(newRecord)) {
-                            JOptionPane.showMessageDialog(null,
-                                "El producto fue actualizado",
-                                String.format("Actualización de %s", this.nameEntity),
-                                JOptionPane.INFORMATION_MESSAGE);
-                        } else {
-                            JOptionPane.showMessageDialog(null,
-                                "El producto no fue actualizado",
-                                String.format("Actualización de %s", this.nameEntity),
-                                JOptionPane.INFORMATION_MESSAGE);
+                        if(newRecord != null) {
+                            newRecord.setId(idUpdate);
+                            if(this.updateRecord(newRecord)) {
+                                JOptionPane.showMessageDialog(null, "El registro fue actualizado",
+                                    String.format("Actualización de %s", this.nameEntity),
+                                    JOptionPane.INFORMATION_MESSAGE);
+                            } else {
+                                JOptionPane.showMessageDialog(null, "El registro no fue actualizado",
+                                    String.format("Actualización de %s", this.nameEntity),
+                                    JOptionPane.ERROR_MESSAGE);
+                            }
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null,
-                            "El registro no existe",
+                        JOptionPane.showMessageDialog(null, "El registro no existe",
                             String.format("Actualización de %s", this.nameEntity),
                             JOptionPane.ERROR_MESSAGE);
                     }
                     break;
                 case 4:
                     int idDelete = Integer.parseInt(JOptionPane.showInputDialog(
-                        null,
-                        "Digite el identificador del registro: ",
+                        null, "Digite el identificador del registro a eliminar: ",
                         String.format("Eliminación de %s", this.nameEntity),
                         JOptionPane.INFORMATION_MESSAGE));
                     if(this.deleteRecord(idDelete)) {
-                        JOptionPane.showMessageDialog(null,
-                            "Se pudo realizar la operación de eliminación con éxito.",
+                        JOptionPane.showMessageDialog(null, "Se eliminó el registro con éxito.",
                             String.format("Eliminación de %s", this.nameEntity),
                             JOptionPane.INFORMATION_MESSAGE);
                     } else {
-                        JOptionPane.showMessageDialog(null,
-                            "No se pudo eliminar el registro ya que no existe.",
+                        JOptionPane.showMessageDialog(null, "No se pudo eliminar el registro ya que no existe.",
                             String.format("Eliminación de %s", this.nameEntity),
                             JOptionPane.ERROR_MESSAGE);
                     }
@@ -98,6 +93,8 @@ public abstract class AbstractCrud<T extends BaseClass> {
                 case 5:
                     flag = false;
                     break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Opción inválida", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }

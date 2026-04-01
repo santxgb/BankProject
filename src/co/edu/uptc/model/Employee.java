@@ -1,4 +1,5 @@
-package BankProject.model;
+package co.edu.uptc.model;
+
 import java.util.Date;
 
 public class Employee extends BaseClass {
@@ -8,6 +9,7 @@ public class Employee extends BaseClass {
     private Date hireDate;
     private String speciality;
     private static int autoId;
+
     public Employee(String name, String position, double salary, Date hireDate, String speciality) {
         this.name = name;
         this.position = position;
@@ -16,41 +18,21 @@ public class Employee extends BaseClass {
         this.speciality = speciality;
         this.id = ++autoId;
     }
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public String getPosition() {
-        return position;
-    }
-    public void setPosition(String position) {
-        this.position = position;
-    }
-    public double getSalary() {
-        return salary;
-    }
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
-    public Date getHireDate() {
-        return hireDate;
-    }
-    public void setHireDate(Date hireDate) {
-        this.hireDate = hireDate;
-    }
-    public String getSpeciality() {
-        return speciality;
-    }
-    public void setSpeciality(String speciality) {
-        this.speciality = speciality;
-    }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+    public String getPosition() { return position; }
+    public void setPosition(String position) { this.position = position; }
+    public double getSalary() { return salary; }
+    public void setSalary(double salary) { this.salary = salary; }
+    public Date getHireDate() { return hireDate; }
+    public void setHireDate(Date hireDate) { this.hireDate = hireDate; }
+    public String getSpeciality() { return speciality; }
+    public void setSpeciality(String speciality) { this.speciality = speciality; }
+
     @Override
     public String toString() {
-        return "Employee [name=" + name + ", position=" + position + ", salary=" + salary + ", hireDate=" + hireDate
-                + ", speciality=" + speciality + "]";
+        return "Employee [id=" + id + ", name=" + name + ", position=" + position
+                + ", salary=" + salary + ", hireDate=" + hireDate + ", speciality=" + speciality + "]";
     }
-    
-    
 }
