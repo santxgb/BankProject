@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) {
 
         CrudBank           crudBank           = new CrudBank();
-        CrudCommercialBank crudCommercialBank = new CrudCommercialBank();
+        CrudCommercialBank crudCommercialBank = new CrudCommercialBank(crudBank);
         CrudCustomer       crudCustomer       = new CrudCustomer(crudBank);
         CrudEmployee       crudEmployee       = new CrudEmployee(crudBank);
         CrudAccount        crudAccount        = new CrudAccount(crudBank);

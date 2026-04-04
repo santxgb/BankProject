@@ -1,15 +1,18 @@
 package co.edu.uptc.logic;
 
-import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
+
+import co.edu.uptc.model.Bank;
 import co.edu.uptc.model.CommercialBank;
 
 public class CrudCommercialBank extends AbstractCrud<CommercialBank> {
 
-    private ArrayList<CommercialBank> list = new ArrayList<>();
+    private CrudBank crudBank;
 
-    public CrudCommercialBank() { super("CommercialBank"); }
+    public CrudCommercialBank(CrudBank crudBank) { super("CommercialBank"); 
+        this.crudBank = crudBank;
+    }
 
     @Override
     protected CommercialBank createInstance() {
@@ -33,26 +36,24 @@ public class CrudCommercialBank extends AbstractCrud<CommercialBank> {
 
     @Override
     protected boolean newRecord(CommercialBank record) {
-        if (findRecordById(record.getId()) != null) return false;
-        return list.add(record);
+        if (crudBank.findRecordById(record.getId()) != null) return false;
+        return crudBank.newRecord(record);
     }
 
     @Override
     protected CommercialBank findRecordById(int id) {
-        for (CommercialBank cb : list) { if (cb.getId() == id) return cb; }
+        Bank found = crudBank.findRecordById(id);
+        if (found instanceof CommercialBank) return (CommercialBank) found;
         return null;
     }
 
     @Override
     protected boolean updateRecord(CommercialBank updated) {
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getId() == updated.getId()) { list.set(i, updated); return true; }
-        }
-        return false;
+        return crudBank.updateRecord(updated);
     }
 
     @Override
     protected boolean deleteRecord(int id) {
-        return list.removeIf(cb -> cb.getId() == id);
+        return crudBank.deleteRecord(id);
     }
 }

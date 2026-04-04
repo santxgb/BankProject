@@ -23,13 +23,13 @@ public class CrudBank extends AbstractCrud<Bank> {
     }
 
     @Override
-    protected boolean newRecord(Bank record) {
+    public boolean newRecord(Bank record) {
         if (findRecordById(record.getId()) != null) return false;
         return list.add(record);
     }
 
     @Override
-    protected Bank findRecordById(int id) {
+    public Bank findRecordById(int id) {
         for (Bank b : list) { if (b.getId() == id) return b; }
         return null;
     }
