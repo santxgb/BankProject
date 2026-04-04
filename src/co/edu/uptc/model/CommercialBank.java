@@ -22,27 +22,23 @@ public class CommercialBank extends Bank {
     }
 
     public double getLoanInterestRate() { return loanInterestRate; }
-    public void setLoanInterestRate(double loanInterestRate) { this.loanInterestRate = loanInterestRate; }
-
+    public void setLoanInterestRate(double r) { this.loanInterestRate = r; }
     public double getCreditLimit() { return creditLimit; }
-    public void setCreditLimit(double creditLimit) { this.creditLimit = creditLimit; }
-
+    public void setCreditLimit(double c) { this.creditLimit = c; }
     public int getAtmCount() { return atmCount; }
-    public void setAtmCount(int atmCount) { this.atmCount = atmCount; }
-
+    public void setAtmCount(int a) { this.atmCount = a; }
     public boolean isOffersMortgage() { return offersMortgage; }
-    public void setOffersMortgage(boolean offersMortgage) { this.offersMortgage = offersMortgage; }
-
+    public void setOffersMortgage(boolean o) { this.offersMortgage = o; }
     public String getBankCategory() { return bankCategory; }
-    public void setBankCategory(String bankCategory) { this.bankCategory = bankCategory; }
+    public void setBankCategory(String b) { this.bankCategory = b; }
 
     @Override
     public String toString() {
-        return "CommercialBank [id=" + id + ", name=" + name + ", nit=" + nit +
-               ", address=" + address + ", phone=" + phone +
-               ", foundationDate=" + foundationDate + ", totalAssets=" + totalAssets +
-               ", loanInterestRate=" + loanInterestRate + ", creditLimit=" + creditLimit +
-               ", atmCount=" + atmCount + ", offersMortgage=" + offersMortgage +
-               ", bankCategory=" + bankCategory + "]";
+        return "CommercialBank [id=" + id + ", name=" + name + ", nit=" + nit
+                + ", address=" + address + ", phone=" + phone
+                + ", foundationDate=" + foundationDate + ", totalAssets=" + totalAssets
+                + ", loanInterestRate=" + loanInterestRate + ", creditLimit=" + creditLimit
+                + ", atmCount=" + atmCount + ", offersMortgage=" + offersMortgage
+                + ", bankCategory=" + bankCategory + "]";
     }
 }
