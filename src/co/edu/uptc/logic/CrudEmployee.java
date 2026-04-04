@@ -4,12 +4,17 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import co.edu.uptc.model.Employee;
+import co.edu.uptc.model.Bank;
 
 public class CrudEmployee extends AbstractCrud<Employee> {
 
     private ArrayList<Employee> list = new ArrayList<>();
+    private CrudBank crudBank;
 
-    public CrudEmployee() { super("Employee"); }
+    public CrudEmployee(CrudBank crudBank) {
+    super("Employee");
+    this.crudBank = crudBank;
+    }
 
     @Override
     protected Employee createInstance() {
@@ -24,8 +29,21 @@ public class CrudEmployee extends AbstractCrud<Employee> {
     @Override
     protected boolean newRecord(Employee record) {
         if (findRecordById(record.getId()) != null) return false;
-        return list.add(record);
+        list.add(record);
+        String idStr = JOptionPane.showInputDialog(null,
+        "¿A qué banco asociar este empleado? (ingrese el ID del banco):",
+        "Asociar banco", JOptionPane.QUESTION_MESSAGE);
+        if (idStr != null) {
+            Bank banco = crudBank.findRecordById(Integer.parseInt(idStr));
+            if (banco != null) {
+            banco.getEmployeeList().add(record);
+            } else {
+            JOptionPane.showMessageDialog(null, "Banco no encontrado, empleado guardado sin asociar.",
+                "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
     }
+    return true;
+    }   
 
     @Override
     protected Employee findRecordById(int id) {

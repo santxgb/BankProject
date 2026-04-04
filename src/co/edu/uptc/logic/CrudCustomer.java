@@ -4,12 +4,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import co.edu.uptc.model.Customer;
+import co.edu.uptc.model.Bank;
 
 public class CrudCustomer extends AbstractCrud<Customer> {
 
     private ArrayList<Customer> list = new ArrayList<>();
 
-    public CrudCustomer() { super("Customer"); }
+    private CrudBank crudBank;
+
+    public CrudCustomer(CrudBank crudBank) {
+    super("Customer");
+    this.crudBank = crudBank;
+    }
 
     @Override
     protected Customer createInstance() {
@@ -24,7 +30,20 @@ public class CrudCustomer extends AbstractCrud<Customer> {
     @Override
     protected boolean newRecord(Customer record) {
         if (findRecordById(record.getId()) != null) return false;
-        return list.add(record);
+        list.add(record);
+        String idStr = JOptionPane.showInputDialog(null,
+        "¿A qué banco asociar este cliente? (ingrese el ID del banco):",
+        "Asociar banco", JOptionPane.QUESTION_MESSAGE);
+        if (idStr != null) {
+        Bank banco = crudBank.findRecordById(Integer.parseInt(idStr));
+        if (banco != null) {
+            banco.getCustomerList().add(record);
+        } else {
+            JOptionPane.showMessageDialog(null, "Banco no encontrado, cliente guardado sin asociar.",
+                "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+        return true;
     }
 
     @Override

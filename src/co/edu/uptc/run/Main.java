@@ -10,11 +10,11 @@ import co.edu.uptc.logic.CrudEmployee;
 public class Main {
     public static void main(String[] args) {
 
-        CrudCustomer       crudCustomer       = new CrudCustomer();
-        CrudEmployee       crudEmployee       = new CrudEmployee();
-        CrudAccount        crudAccount        = new CrudAccount();
         CrudBank           crudBank           = new CrudBank();
         CrudCommercialBank crudCommercialBank = new CrudCommercialBank();
+        CrudCustomer       crudCustomer       = new CrudCustomer(crudBank);
+        CrudEmployee       crudEmployee       = new CrudEmployee(crudBank);
+        CrudAccount        crudAccount        = new CrudAccount(crudBank);
 
         boolean running = true;
         while (running) {

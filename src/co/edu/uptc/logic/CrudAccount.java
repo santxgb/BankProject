@@ -6,12 +6,18 @@ import javax.swing.JOptionPane;
 import co.edu.uptc.enums.AccountStatus;
 import co.edu.uptc.enums.AccountType;
 import co.edu.uptc.model.Account;
+import co.edu.uptc.model.Bank;
 
 public class CrudAccount extends AbstractCrud<Account> {
 
     private ArrayList<Account> list = new ArrayList<>();
 
-    public CrudAccount() { super("Account"); }
+    private CrudBank crudBank;
+
+    public CrudAccount(CrudBank crudBank) {
+        super("Account");
+        this.crudBank = crudBank;
+    }
 
     @Override
     protected Account createInstance() {
@@ -31,7 +37,20 @@ public class CrudAccount extends AbstractCrud<Account> {
     @Override
     protected boolean newRecord(Account record) {
         if (findRecordById(record.getId()) != null) return false;
-        return list.add(record);
+        list.add(record);
+        String idStr = JOptionPane.showInputDialog(null,
+        "¿A qué banco asociar esta cuenta? (ingrese el ID del banco):",
+        "Asociar banco", JOptionPane.QUESTION_MESSAGE);
+        if (idStr != null) {
+        Bank banco = crudBank.findRecordById(Integer.parseInt(idStr));
+        if (banco != null) {
+            banco.getAccountList().add(record);
+        } else {
+            JOptionPane.showMessageDialog(null, "Banco no encontrado, cuenta guardada sin asociar.",
+                "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+    return true;
     }
 
     @Override
@@ -52,4 +71,5 @@ public class CrudAccount extends AbstractCrud<Account> {
     protected boolean deleteRecord(int id) {
         return list.removeIf(a -> a.getId() == id);
     }
+    
 }

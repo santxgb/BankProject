@@ -104,4 +104,6 @@ public abstract class AbstractCrud<T extends BaseClass> {
     protected abstract boolean updateRecord(T t);
     protected abstract T createInstance();
     protected abstract boolean deleteRecord(int id);
+    protected void preservarCampos(T registroViejo, T registroNuevo) {
+    }
 }
