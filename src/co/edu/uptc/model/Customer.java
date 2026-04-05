@@ -7,15 +7,12 @@ public class Customer extends BaseClass {
     private String email;
     private String phone;
     private Date registrationDate;
-    private static int autoId;
-
     public Customer(String name, String idNumber, String email, String phone, Date registrationDate) {
         this.name = name;
         this.idNumber = idNumber;
         this.email = email;
         this.phone = phone;
         this.registrationDate = registrationDate;
-        this.id = ++autoId;
     }
 
     public String getName() { return name; }

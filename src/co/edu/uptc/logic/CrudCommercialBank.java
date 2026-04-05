@@ -1,10 +1,9 @@
 package co.edu.uptc.logic;
 
-import java.util.Date;
-import javax.swing.JOptionPane;
-
 import co.edu.uptc.model.Bank;
 import co.edu.uptc.model.CommercialBank;
+import java.util.Date;
+import javax.swing.JOptionPane;
 
 public class CrudCommercialBank extends AbstractCrud<CommercialBank> {
 
@@ -55,5 +54,12 @@ public class CrudCommercialBank extends AbstractCrud<CommercialBank> {
     @Override
     protected boolean deleteRecord(int id) {
         return crudBank.deleteRecord(id);
+    }
+
+    @Override
+    protected void preservarCampos(CommercialBank vieja, CommercialBank nueva) {
+        nueva.setCustomerList(vieja.getCustomerList());
+        nueva.setEmployeeList(vieja.getEmployeeList());
+        nueva.setAccountList(vieja.getAccountList());
     }
 }

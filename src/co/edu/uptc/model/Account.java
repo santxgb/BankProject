@@ -1,8 +1,7 @@
 package co.edu.uptc.model;
-import java.util.Date;
-
 import co.edu.uptc.enums.AccountStatus;
 import co.edu.uptc.enums.AccountType;
+import java.util.Date;
 
 public class Account extends BaseClass {
     private String accountNumber;
@@ -10,8 +9,6 @@ public class Account extends BaseClass {
     private double balance;
     private Date openingDate;
     private AccountStatus status;
-    private static int autoId;
-
     public Account(String accountNumber, AccountType accountType, double balance,
                    Date openingDate, AccountStatus status) {
         this.accountNumber = accountNumber;
@@ -19,7 +16,6 @@ public class Account extends BaseClass {
         this.balance = balance;
         this.openingDate = openingDate;
         this.status = status;
-        this.id = ++autoId;
     }
 
     public String getAccountNumber() { return accountNumber; }

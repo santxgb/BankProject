@@ -1,7 +1,7 @@
 package co.edu.uptc.logic;
 
-import javax.swing.JOptionPane;
 import co.edu.uptc.model.BaseClass;
+import javax.swing.JOptionPane;
 
 public abstract class AbstractCrud<T extends BaseClass> {
     private String nameEntity;
@@ -59,6 +59,7 @@ public abstract class AbstractCrud<T extends BaseClass> {
                         T newRecord = createInstance();
                         if(newRecord != null) {
                             newRecord.setId(idUpdate);
+                            this.preservarCampos(recordUpdate, newRecord);
                             if(this.updateRecord(newRecord)) {
                                 JOptionPane.showMessageDialog(null, "El registro fue actualizado",
                                     String.format("Actualización de %s", this.nameEntity),

@@ -2,8 +2,12 @@ package co.edu.uptc.model;
 
 public class BaseClass {
     protected int id;
+    private static int autoId = 0;
 
-    public BaseClass() { super(); }
+    public BaseClass() {
+        super();
+        this.id = ++autoId;
+    }
 
     public BaseClass(int id) { this.id = id; }
 

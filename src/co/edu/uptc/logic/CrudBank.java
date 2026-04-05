@@ -1,9 +1,9 @@
 package co.edu.uptc.logic;
 
+import co.edu.uptc.model.Bank;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
-import co.edu.uptc.model.Bank;
 
 public class CrudBank extends AbstractCrud<Bank> {
 
@@ -23,15 +23,22 @@ public class CrudBank extends AbstractCrud<Bank> {
     }
 
     @Override
-    public boolean newRecord(Bank record) {
+    protected boolean newRecord(Bank record) {
         if (findRecordById(record.getId()) != null) return false;
         return list.add(record);
     }
 
     @Override
-    public Bank findRecordById(int id) {
+    protected Bank findRecordById(int id) {
         for (Bank b : list) { if (b.getId() == id) return b; }
         return null;
+    }
+
+    @Override
+    protected void preservarCampos(Bank viejo, Bank nuevo) {
+        nuevo.setCustomerList(viejo.getCustomerList());
+        nuevo.setEmployeeList(viejo.getEmployeeList());
+        nuevo.setAccountList(viejo.getAccountList());
     }
 
     @Override

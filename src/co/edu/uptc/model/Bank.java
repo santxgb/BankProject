@@ -14,8 +14,6 @@ public class Bank extends BaseClass {
     protected List<Customer> customerList;
     protected List<Employee> employeeList;
     protected List<Account> accountList;
-    private static int autoId;
-
     public Bank(String name, String nit, String address, String phone,
                 Date foundationDate, double totalAssets) {
         this.name = name;
@@ -27,7 +25,6 @@ public class Bank extends BaseClass {
         this.customerList = new ArrayList<>();
         this.employeeList = new ArrayList<>();
         this.accountList  = new ArrayList<>();
-        this.id = ++autoId;
     }
 
     public String getName() { return name; }

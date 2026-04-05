@@ -7,15 +7,12 @@ public class Employee extends BaseClass {
     private double salary;
     private Date hireDate;
     private String speciality;
-    private static int autoId;
-
     public Employee(String name, String position, double salary, Date hireDate, String speciality) {
         this.name = name;
         this.position = position;
         this.salary = salary;
         this.hireDate = hireDate;
         this.speciality = speciality;
-        this.id = ++autoId;
     }
 
     public String getName() { return name; }
