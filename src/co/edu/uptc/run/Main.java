@@ -20,6 +20,7 @@ public class Main {
         while (running) {
             int op = Integer.parseInt(JOptionPane.showInputDialog(
                 null,
+                "RECUERDE PRIMERO CREAR EL BANCO\n" +
                 "[1] Gestionar Customers\n" +
                 "[2] Gestionar Employees\n" +
                 "[3] Gestionar Accounts\n"  +
