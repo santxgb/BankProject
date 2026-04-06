@@ -1,6 +1,6 @@
 package co.edu.uptc.enums;
 
-public enum AccountType {
+public enum AccountTypeEnum {
     SAVINGS,
     CHECKING,
     CREDIT

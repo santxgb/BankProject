@@ -3,8 +3,8 @@ package co.edu.uptc.logic;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
-import co.edu.uptc.enums.AccountStatus;
-import co.edu.uptc.enums.AccountType;
+import co.edu.uptc.enums.AccountStatusEnum;
+import co.edu.uptc.enums.AccountTypeEnum;
 import co.edu.uptc.model.Account;
 import co.edu.uptc.model.Bank;
 
@@ -30,8 +30,8 @@ public class CrudAccount extends AbstractCrud<Account> {
         int statusIdx        = JOptionPane.showOptionDialog(null, "Estado:", "Crear Account",
                                JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, statuses, statuses[0]);
         if (accountNumber == null || balanceStr == null || typeIdx < 0 || statusIdx < 0) return null;
-        return new Account(accountNumber, AccountType.values()[typeIdx],
-                Double.parseDouble(balanceStr), new Date(), AccountStatus.values()[statusIdx]);
+        return new Account(accountNumber, AccountTypeEnum.values()[typeIdx],
+                Double.parseDouble(balanceStr), new Date(), AccountStatusEnum.values()[statusIdx]);
     }
 
     @Override

@@ -1,5 +1,5 @@
 package co.edu.uptc.enums;
-public enum AccountStatus {
+public enum AccountStatusEnum {
     ACTIVE,
     INACTIVE,
     BLOCKED
